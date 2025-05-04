@@ -2,7 +2,9 @@
 
 //destructuring
 const {Sequelize, DataTypes} = require("sequelize")
-
+const bookModel = require("./models/book.model")
+const userModel = require("./models/user.model")
+const productModel = require("./models/product.model")
 //another way
 // const sequelize = require("sequelize")
 // const Sequelize = sequelize.Sequelize
@@ -22,6 +24,15 @@ sequelize.authenticate()
 const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
+db.products = productModel(sequelize,DataTypes);
+db.users = userModel(sequelize, DataTypes);
+db.books = bookModel(sequelize, DataTypes);
+        // require("./models/book.model")() -- another way
+
+//migrate code for database table to be seen in supabase platform
+sequelize.sync({alter : false}).then(()=>{
+    console.log("Migrate vayo hai.")
+})
 
 module.exports = db   
-//test
+
