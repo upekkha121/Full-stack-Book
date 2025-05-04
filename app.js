@@ -25,7 +25,7 @@ app.post("/books",function(req,res){
         message: "Book added successfully"
     })
 })
-app.delete("/books/:id",function(req,res){
+app.delete("/books/:id",function(req,res){        
     //logic to add book to database goes her.
 
     res.json({
